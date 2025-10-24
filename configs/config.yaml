@@ -1,0 +1,154 @@
+# GAT - AI辅助工业设计项目配置文件
+
+# 模型配置
+models:
+  # 基础Stable Diffusion模型
+  base_model:
+    path: "models/stable-diffusion-v1-5"
+    type: "stable-diffusion"
+    precision: "fp16"
+    
+  # LoRA模型配置
+  lora:
+    morphy_richards:
+      path: "data/models/morphy_richards_home_appliances.safetensors"
+      trigger_word: "morphyrichards"
+      weight: 0.8
+      enabled: true
+      
+  # ControlNet配置
+  controlnet:
+    type: "t2i-adapter"
+    models:
+      sketch: "models/controlnet/sketch_adapter"
+      canny: "models/controlnet/canny_adapter"
+      depth: "models/controlnet/depth_adapter"
+    enabled: true
+
+# 生成参数
+generation:
+  # 基础参数
+  num_inference_steps: 20
+  guidance_scale: 7.5
+  width: 512
+  height: 512
+  
+  # 批量生成
+  batch_size: 4
+  num_images: 4
+  
+  # 质量控制
+  quality_threshold: 0.7
+  diversity_threshold: 0.3
+
+# 硬件配置
+hardware:
+  device: "auto"  # auto, cpu, cuda, mps
+  memory_efficient: true
+  use_xformers: true
+  
+# 输入处理
+input:
+  # CAD文件支持
+  cad_formats: [".step", ".stp", ".iges", ".igs", ".obj", ".stl"]
+  
+  # 图像预处理
+  image_preprocessing:
+    resize: true
+    max_size: 1024
+    normalize: true
+    
+  # 六视图提取
+  six_views:
+    enabled: true
+    angles: [0, 90, 180, 270, 45, 135]  # 度
+    distance: 2.0
+
+# 输出配置
+output:
+  # 图像格式
+  image_format: "png"
+  quality: 95
+  
+  # 保存路径
+  base_path: "data/output"
+  organize_by_date: true
+  
+  # 元数据
+  save_metadata: true
+  include_prompts: true
+
+# 材质系统
+materials:
+  # MatCLIP配置
+  matclip:
+    enabled: true
+    model_path: "models/matclip"
+    confidence_threshold: 0.6
+    
+  # 本地材质库
+  library:
+    path: "data/materials"
+    auto_update: true
+    
+  # 材质分配
+  assignment:
+    method: "similarity"  # similarity, manual, hybrid
+    auto_assign: true
+
+# 3D交互
+interaction:
+  # 3D渲染
+  renderer: "opengl"  # opengl, software
+  
+  # 交互功能
+  features:
+    rotation: true
+    zoom: true
+    pan: true
+    material_editing: true
+    
+  # 导出选项
+  export:
+    formats: ["obj", "glb", "ply"]
+    include_textures: true
+
+# 用户界面
+ui:
+  # 界面类型
+  type: "streamlit"  # streamlit, gradio, fastapi
+  
+  # 主题配置
+  theme: "light"
+  layout: "wide"
+  
+  # 功能开关
+  features:
+    batch_processing: true
+    real_time_preview: true
+    advanced_settings: true
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "logs/gat.log"
+  max_size: "10MB"
+  backup_count: 5
+  
+# 性能优化
+performance:
+  # 缓存配置
+  cache:
+    enabled: true
+    max_size: "1GB"
+    ttl: 3600  # 秒
+    
+  # 并行处理
+  parallel:
+    enabled: true
+    max_workers: 4
+    
+  # 内存管理
+  memory:
+    cleanup_interval: 300  # 秒
+    max_memory_usage: "8GB"
