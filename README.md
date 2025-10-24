@@ -33,24 +33,49 @@ GAT/
 
 ## 快速开始
 
-1. 克隆仓库
+### Windows用户（推荐）
+1. **克隆仓库**
 ```bash
-git clone git@github.com:GINHE527/GAT.git
+git clone https://github.com/GINHE527/GAT.git
 cd GAT
 ```
 
-2. 安装依赖
+2. **一键安装**
+```bash
+# 运行Windows安装脚本
+scripts\windows_install.bat
+```
+
+3. **下载模型**
+```bash
+# 运行模型下载脚本
+scripts\download_models_windows.bat
+```
+
+4. **启动项目**
+```bash
+python src/main.py --mode ui
+```
+
+### Linux/Mac用户
+1. **克隆仓库**
+```bash
+git clone https://github.com/GINHE527/GAT.git
+cd GAT
+```
+
+2. **安装依赖**
 ```bash
 pip install -r requirements.txt
 ```
 
-3. 配置环境
+3. **配置环境**
 ```bash
 cp configs/config.example.yaml configs/config.yaml
 # 编辑配置文件
 ```
 
-4. 运行项目
+4. **运行项目**
 ```bash
 python src/main.py
 ```
