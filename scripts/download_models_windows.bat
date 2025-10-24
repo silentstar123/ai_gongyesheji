@@ -16,7 +16,7 @@ echo 📦 安装huggingface-hub...
 pip install huggingface-hub
 
 echo.
-echo 📥 开始下载模型...
+echo 📥 开始下载基础模型...
 
 REM 创建模型目录
 mkdir models\stable-diffusion-v1-5 2>nul
@@ -33,17 +33,17 @@ echo 🔄 下载ControlNet Canny模型...
 huggingface-cli download lllyasviel/sd-controlnet-canny --local-dir models/controlnet/canny
 
 echo.
-echo ⚠️  重要提示：
-echo 请手动下载Morphy Richards LoRA模型：
-echo 1. 访问: https://civitai.com/models/22932/morphy-richards-home-appliances-lora
-echo 2. 下载: morphy_richards_home_appliances.safetensors
-echo 3. 保存到: data\models\morphy_richards_home_appliances.safetensors
+echo ✅ 基础模型下载完成！
+echo.
+echo 📋 下一步: 下载LoRA模型
+echo 运行: scripts\download_lora.bat
+echo 或者: python scripts\setup_lora.py
 echo.
 
-echo ✅ 模型下载完成！
-echo.
-echo 🚀 现在可以启动项目了：
-echo python src\main.py --mode ui
+echo 🎯 完整安装流程:
+echo 1. 基础模型 ✅
+echo 2. LoRA模型 ⏳ (需要手动下载)
+echo 3. 启动项目 🚀
 echo.
 
 pause
