@@ -34,27 +34,44 @@ GAT/
 ## 快速开始
 
 ### Windows用户（推荐）
-1. **克隆仓库**
+
+#### 方法1：一键启动（最简单）
 ```bash
+# 1. 克隆项目
 git clone https://github.com/GINHE527/GAT.git
 cd GAT
+
+# 2. 一键启动（自动安装+下载模型+启动）
+scripts\quick_start.bat
 ```
 
-2. **一键安装**
+#### 方法2：分步安装
 ```bash
-# 运行Windows安装脚本
+# 1. 克隆项目
+git clone https://github.com/GINHE527/GAT.git
+cd GAT
+
+# 2. 安装依赖
 scripts\windows_install.bat
-```
 
-3. **下载模型**
-```bash
-# 运行模型下载脚本
+# 3. 下载模型
 scripts\download_models_windows.bat
+
+# 4. 手动下载LoRA模型
+# 访问: https://civitai.com/models/22932/morphy-richards-home-appliances-lora
+# 下载到: data\models\morphy_richards_home_appliances.safetensors
+
+# 5. 启动项目
+scripts\run_project.bat
 ```
 
-4. **启动项目**
+#### 方法3：直接运行
 ```bash
-python src/main.py --mode ui
+# 激活虚拟环境
+venv\Scripts\activate
+
+# 启动Web界面
+python src\main.py --mode ui
 ```
 
 ### Linux/Mac用户
